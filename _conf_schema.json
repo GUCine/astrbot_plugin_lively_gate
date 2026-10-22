@@ -1,0 +1,88 @@
+{
+  "owner_qq": {
+    "description": "主人的 QQ 號",
+    "type": "list",
+    "hint": "可以填多個，第一個是主要主人（彙報、審核都私信給他）。留空就用 AstrBot 的管理員 ID（admins_id）。同套件的其他插件沒單獨填時都用這裡的",
+    "default": []
+  },
+  "groups": {
+    "description": "服務的 QQ 群號",
+    "type": "list",
+    "hint": "只有這些群裡的消息會被處理，別的群一律忽略；私聊總是放行。留空 = 不進任何群",
+    "default": []
+  },
+  "bot_qq": {
+    "description": "機器人自己的 QQ 號",
+    "type": "string",
+    "hint": "留空會自動識別（收到第一條消息後，或問 NapCat）",
+    "default": ""
+  },
+  "bot_name": {
+    "description": "機器人的名字",
+    "type": "string",
+    "hint": "群友在句子裡喊這個名字會當作 @ 它；同套件的其他插件也用它判斷“在跟機器人說話”。留空 = 不啟用喊名字當 @",
+    "default": ""
+  },
+  "self_call": {
+    "description": "機器人的自稱",
+    "type": "string",
+    "hint": "提示詞和各插件發給主人的消息裡，機器人怎麼稱呼自己，例如「本喵」。留空 = 我",
+    "default": ""
+  },
+  "owner_call": {
+    "description": "機器人對主人的稱呼",
+    "type": "string",
+    "hint": "例如「老大」。留空 = 主人",
+    "default": ""
+  },
+  "card_name": {
+    "description": "印象卡的叫法",
+    "type": "string",
+    "hint": "好感度插件發給群友的那張卡叫什麼。留空 = 印象卡",
+    "default": ""
+  },
+  "owner_traditional": {
+    "description": "發給主人的消息用繁體",
+    "type": "bool",
+    "hint": "各插件私信主人的通知、指令回覆轉成繁體（需要 opencc-python-reimplemented）。群聊和給模型的提示詞不轉",
+    "default": true
+  },
+  "platform_id": {
+    "description": "NapCat 平台 ID",
+    "type": "string",
+    "hint": "AstrBot 消息平台裡那個 aiocqhttp 平台的 ID。留空自動用第一個 aiocqhttp 平台",
+    "default": ""
+  },
+  "persona_id": {
+    "description": "機器人用的人格 ID",
+    "type": "string",
+    "hint": "後台寫說說、主動聊天開場白時套用這個人格的提示詞。留空用 AstrBot 預設人格",
+    "default": ""
+  },
+  "group_provider_id": {
+    "description": "群聊用的模型",
+    "type": "string",
+    "_special": "select_provider",
+    "hint": "留空就用 AstrBot 預設模型",
+    "default": ""
+  },
+  "group_providers": {
+    "description": "個別群單獨用的模型",
+    "type": "list",
+    "hint": "一行一個，格式「群號=模型ID」，例如 123456789=my-provider-2。適合每個群單獨一把密鑰、分開計費",
+    "default": []
+  },
+  "dm_provider_id": {
+    "description": "私聊用的模型",
+    "type": "string",
+    "_special": "select_provider",
+    "hint": "留空就用 AstrBot 預設模型",
+    "default": ""
+  },
+  "ignored_senders": {
+    "description": "完全忽略的 QQ 號",
+    "type": "list",
+    "hint": "群裡的其他機器人填這裡，避免機器人之間對聊",
+    "default": []
+  }
+}

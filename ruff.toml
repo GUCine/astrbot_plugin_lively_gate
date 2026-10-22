@@ -1,0 +1,12 @@
+# 固定 ruff 规则集，避免不同 ruff 版本默认规则不一样导致结果漂移。
+# E4/E7/E9/F 是 ruff 的经典默认规则；I 是 import 排序；FURB167 统一正则 flag 写法。
+# 插件里刻意保留了若干 `except Exception`（宁可吞掉异常也不能让消息管线中断），
+# 所以不启用 BLE001 / S110。
+target-version = "py310"
+line-length = 88
+
+[lint]
+select = ["E4", "E7", "E9", "F", "I", "FURB167"]
+
+[format]
+quote-style = "double"
