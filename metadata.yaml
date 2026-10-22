@@ -1,9 +1,15 @@
 name: astrbot_plugin_lively_gate
 display_name: 群組門禁與共用設定
 desc: 門禁和公共設定：只放行指定 QQ 群、群聊/私聊分別用不同模型、喊名字當 @、表情包識別、攔截洩漏的內部標記
+short_desc: 只放行指定 QQ 群，群聊私聊分開選模型，喊名字當 @；也是套件的共用設定
 version: 2.0.0
 author: GUCine
 repo: https://github.com/GUCine/astrbot_plugin_lively_gate
 support_platforms:
   - aiocqhttp
 astrbot_version: ">=4.29.0"
+tags:
+  - 門禁
+  - QQ群
+  - 模型路由
+  - lively

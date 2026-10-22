@@ -79,7 +79,7 @@ def to_traditional(text: str) -> str:
             _s2tw = opencc.OpenCC("s2tw").convert
         except Exception as e:
             logger.warning(
-                f"[lively_common] 沒裝 opencc-python-reimplemented，發給主人的訊息維持簡體: {e}"
+                f"[lively_common] 没装 opencc-python-reimplemented，发给主人的消息维持简体: {e}"
             )
             _s2tw = False
     if not _s2tw:
@@ -140,10 +140,10 @@ class Settings:
             if isinstance(fresh, dict):
                 self.cfg.update(fresh)
                 logger.info(
-                    f"[lively_common] 重新讀取了配置 {os.path.basename(self.cfg.config_path)}"
+                    f"[lively_common] 重新读取了配置 {os.path.basename(self.cfg.config_path)}"
                 )
         except Exception as e:
-            logger.warning(f"[lively_common] 重新讀取配置失敗: {e}")
+            logger.warning(f"[lively_common] 重新读取配置失败: {e}")
 
     def get(self, key: str, default=None):
         self._reload_if_changed()
@@ -252,7 +252,7 @@ class Settings:
             if qq.isdigit():
                 self._bot_qq = qq
         except Exception as e:
-            logger.debug(f"[lively_common] 問不到機器人 QQ: {e}")
+            logger.debug(f"[lively_common] 问不到机器人 QQ: {e}")
         return self._bot_qq
 
     # ---------- 平台 ----------
@@ -339,6 +339,6 @@ class Settings:
         prov = self.context.get_provider_by_id(pid) if pid else None
         if prov is None:
             if pid:
-                logger.warning(f"[lively_common] 找不到模型 {pid}，改用預設模型")
+                logger.warning(f"[lively_common] 找不到模型 {pid}，改用默认模型")
             prov = self.context.get_using_provider()
         return prov

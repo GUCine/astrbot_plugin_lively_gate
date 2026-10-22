@@ -277,14 +277,14 @@ class LivelyGate(Star):
         if text or state["media"]:
             event.message_str = text
             logger.info(
-                f"[lively_gate] 叫了一聲後接著說了 {len(state['texts'])} 段文字、"
-                f"{len(state['media'])} 個圖片等: {event.unified_msg_origin}"
+                f"[lively_gate] 叫了一声后接着说了 {len(state['texts'])} 段文字、"
+                f"{len(state['media'])} 个图片等: {event.unified_msg_origin}"
             )
         else:
             event.message_str = EMPTY_CALL_TEXT
             event.set_extra("lively_empty_call", True)
             logger.info(
-                f"[lively_gate] 只叫了一聲，沒有下文: {event.unified_msg_origin}"
+                f"[lively_gate] 只叫了一声，没有下文: {event.unified_msg_origin}"
             )
         # 多加一段文字：既把內容帶上，也讓自帶的空 @ 等待不再接管這條
         event.message_obj.message.append(Plain(event.message_str))
@@ -323,7 +323,7 @@ class LivelyGate(Star):
                 self._name_call_at[gid] = now
                 event.is_at_or_wake_command = True
                 logger.info(
-                    f"[lively_gate] 句子裡叫了{self.name}，當作 @: {event.unified_msg_origin}"
+                    f"[lively_gate] 句子里叫了{self.name}，当作 @: {event.unified_msg_origin}"
                 )
         if (LISTEN_IN_DM if is_dm else LISTEN_IN_GROUP) and sender:
             await self._listen(event, sender, is_dm)
@@ -349,7 +349,7 @@ class LivelyGate(Star):
         images, stickers, marks = _count_stickers(event)
         has_text = bool((event.message_str or "").strip())
         logger.info(
-            f"[lively_gate] 圖片 {images} 張，表情包 {stickers} 張，帶文字 {has_text}: {marks}"
+            f"[lively_gate] 图片 {images} 张，表情包 {stickers} 张，带文字 {has_text}: {marks}"
         )
         if has_text:
             all_stickers = images > 0 and stickers == images
@@ -366,10 +366,10 @@ class LivelyGate(Star):
             n = _strip_old_images(getattr(req, "contexts", None))
             if n:
                 logger.info(
-                    f"[lively_gate] 歷史裡 {n} 張舊圖換成了文字: {event.unified_msg_origin}"
+                    f"[lively_gate] 历史里 {n} 张旧图换成了文字: {event.unified_msg_origin}"
                 )
         except Exception as e:
-            logger.warning(f"[lively_gate] 清理歷史圖片失敗: {e}")
+            logger.warning(f"[lively_gate] 清理历史图片失败: {e}")
         if event.get_extra("lively_empty_call"):
             req.extra_user_content_parts.append(
                 TextPart(text=EMPTY_CALL_HINT).mark_as_temp()
@@ -382,7 +382,7 @@ class LivelyGate(Star):
                 TextPart(text=REVIEW_HINT).mark_as_temp()
             )
             logger.info(
-                f"[lively_gate] 評價請求，已提醒好好評: {event.unified_msg_origin}"
+                f"[lively_gate] 评价请求，已提醒好好评: {event.unified_msg_origin}"
             )
 
     async def _listen(self, event: AstrMessageEvent, sender: str, is_dm: bool):
@@ -425,7 +425,7 @@ class LivelyGate(Star):
             )
             event.message_obj.message.extend(state["images"])
             logger.info(
-                f"[lively_gate] 傾聽合併 {len(state['texts']) + 1} 條，"
+                f"[lively_gate] 倾听合并 {len(state['texts']) + 1} 条，"
                 f"等待 {time.monotonic() - state['start']:.1f}s: {event.unified_msg_origin}"
             )
 
@@ -448,7 +448,7 @@ class LivelyGate(Star):
         if not changed:
             return
         logger.warning(
-            f"[lively_gate] 已攔截回覆中的內部內容: {event.unified_msg_origin}"
+            f"[lively_gate] 已拦截回复中的内部内容: {event.unified_msg_origin}"
         )
         if not any(not isinstance(c, Plain) or c.text.strip() for c in chain):
             event.stop_event()
@@ -478,7 +478,7 @@ class LivelyGate(Star):
         if img:
             chain.append(Image.fromFileSystem(str(img)))
         logger.info(
-            f"[lively_gate] 回覆裡剩下沒處理的表情標籤 {tags}，"
+            f"[lively_gate] 回复里剩下没处理的表情标签 {tags}，"
             f"{'换成了表情图' if img else '没有这个分类，删掉了'}: {event.unified_msg_origin}"
         )
         if not chain:
